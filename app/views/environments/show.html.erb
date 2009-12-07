@@ -19,7 +19,7 @@
       <%= instance[:host] %>
     </li>
     <li>
-      <%= instance[:log].join("<br/>") %>
+      <%= instance[:log].collect{|l| content_tag :p, l, :style => "color: #999; font-size: 14px; margin: 10px 0;"}.join("") %>
     </li>
   </ul>
 <% end %>

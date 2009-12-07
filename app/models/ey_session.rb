@@ -24,7 +24,11 @@ class EySession < MechanizedSession
           size = inst.css("td.instance_size").text
           host = inst.css("td.instance_hostname").text
           cpu_graph = inst.css("img.sparkline").first.try(:[], "src")
-          log = inst.css("td.chef").collect(&:text)
+          log = []; inst2 = inst.next
+          while (inst2 && inst2["id"].nil?)
+            log << inst2.css("td.chef").text
+            inst2 = inst2.next
+          end
           list << {:status => status, :status_icon => status_icon, :size => size, :host => host, :cpu_graph => cpu_graph, :log => log, :role => role}
           list
         end
