@@ -19,6 +19,9 @@
   </script>
 </head>
 <body>
+<div id="header">
+  <%= yield :header %>
+</div>
 <% if flash[:error].present? || flash[:notice].present? %>
   <ul>
     <% {:error =>"darkred", :notice => "darkgreen"}.each do |f_type, f_color| %>

@@ -1,2 +1,25 @@
-<h1>Environments#show</h1>
-<p>Find me in app/views/environments/show.html.erb</p>
+<% content_for :header do %>
+  <h1><%= @environment[:title] %></h1>
+  <%= link_to "Back", environments_path, :id => "backButton" %>
+<% end %>
+
+<% @environment[:instances].each do |instance| %>
+  <ul>
+    <li>
+      <%= instance[:role] %>
+    </li>
+    <li>
+      <%= image_tag("https://cloud.engineyard.com/#{instance[:status_icon]}") %>
+      <%= instance[:status].titleize %>
+    </li>
+    <li>
+      <%= instance[:size] %>
+    </li>
+    <li>
+      <%= instance[:host] %>
+    </li>
+    <li>
+      <%= instance[:log].join("<br/>") %>
+    </li>
+  </ul>
+<% end %>

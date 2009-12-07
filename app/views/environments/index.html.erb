@@ -1,2 +1,17 @@
-<h1>Environments#index</h1>
-<p>Find me in app/views/environments/index.html.erb</p>
+<% content_for :header do %>
+  <h1>Environments</h1>
+<% end %>
+
+<% @environments.each do |environment| %>
+  <ul>
+    <li class="arrow">
+      <%= link_to environment[:title], environment_path(environment[:title]) %>
+    </li>
+
+    <% environment[:instances].each do |instance| %>
+      <li>
+        <%= image_tag("https://cloud.engineyard.com/#{instance[:status_icon]}") %> <%= instance[:role] %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
